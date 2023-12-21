@@ -10,7 +10,7 @@ void spath(int graph[n][n], int u)
     int s[M] = {0};
     for (int i = 0; i < n; i++)
     {
-        dist[i] = INT_MAX
+        dist[i] = INT_MAX;
     }
 }
 
