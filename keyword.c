@@ -15,7 +15,7 @@ int main()
     scanf("%s", &str);
     for (int i = 0; i < 32; i++)
     {
-        if (strcmp(str) == 0)
+        if (strcmp(str, kw[i]) == 0)
         {
             flag = 1;
         }
