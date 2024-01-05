@@ -3,24 +3,19 @@
 
 int main()
 {
-    char kw[32][10] = {
-        "int",
-        "char",
-        "float",
-        "double",
-    };
-    printf("Enter the string :");
+    char kw[32][10] = {"auto", "double", "int", "struct", "break", "else", "long", "Switch", "case", "enum", "register", "typedef", "char", "extern", "Return", "union", "const", "float", "short", "unsigned", "continue", "For", "signed", "void", "default", "goto", "sizeof", "volatile", "Do", "if", "static", "while"};
+
     char str[25];
-    int cnt = 0, flag;
+    int cnt = 0, flag = 0;
+    printf("Enter a string \n");
     scanf("%s", str);
-    if ((str[0] >= 'a' && str[0] <= 'z') || (str[0] >= 'A' && str[0] <= 'Z') || (str[0] == '_'))
+
+    if ((str[0] >= 'a' && str[0] <= 'z') || (str[0] >= 'A' && str[0] <= 'Z') || str[0] == '_')
     {
         for (int i = 1; i < strlen(str); i++)
         {
-            if ((str[i] >= 'a' && str[i] <= 'z') ||
-                (str[i] >= 'A' && str[i] <= 'Z') ||
-                (str[i] == '_') ||
-                (str[i] >= 0 && str[i] <= 9))
+            if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z') ||
+                (str[i] == '_') || (str[i] >= '0' && str[i] <= '9'))
             {
                 cnt++;
             }
@@ -32,15 +27,18 @@ int main()
         if (strcmp(str, kw[i]) == 0)
         {
             flag = 1;
+            break; // No need to continue checking if the keyword is found
         }
     }
-    if (flag == 1)
+
+    if (flag == 1 || cnt != strlen(str) - 1)
     {
-        printf("%s is not a identifier", str);
+        printf("Given identifier is not valid\n");
     }
     else
     {
-        printf(" %s is ` a identifier\n", str);
+        printf("Given identifier is valid\n");
     }
+
     return 0;
 }
