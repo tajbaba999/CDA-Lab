@@ -1,18 +1,18 @@
 #include <stdio.h>
 
 int v = 5;
-int visited[5] = {0};
-void dfs(int u, int graph[][v])
+int isVisited[5] = {0};
+dfs(int graph[][v], int u)
 {
-    if (!visited[u])
+    if (!isVisited[u])
     {
         printf("%d", u);
-        visited[u] = 1;
+        isVisited[u] = 1;
         for (int i = 0; i < v; i++)
         {
-            if (graph[u][i] == 0 && !visited[i])
+            if (graph[u][i] && isVisited[i])
             {
-                dfs(i, graph);
+                dfs(graph, i);
             }
         }
     }
@@ -20,6 +20,8 @@ void dfs(int u, int graph[][v])
 
 void main()
 {
-    int arr[5][5] = {{0, 1, 1, 0, 0}, {1, 0, 1, 1, 0}, {1, 1, 0, 0, 1}, {0, 1, 0, 0, 1}, {0, 0, 1, 1, 0}};
-    dfs(0, arr);
+    // printf("Enter the input :");
+    // scanf("%d",&)
+    int graph[5][5] = {{0, 1, 1, 0, 0}, {1, 0, 1, 1, 0}, {1, 1, 0, 0, 1}, {0, 1, 0, 0, 1}, {0, 0, 1, 1, 0}};
+    dfs(graph, 0);
 }
