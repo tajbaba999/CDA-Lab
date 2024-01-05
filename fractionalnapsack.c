@@ -1,52 +1,53 @@
 #include <stdio.h>
-
-void knapack(int num, float weight[], float profit[], float ratio[], float capacity)
+void knapsack(int n, float weight[], float profit[], float capacity)
 {
     float tp = 0;
-    int i;
-    int u = capacity;
-    for (i = 0; i < num; i++)
+    int i, j, u;
+    u = capacity;
+    for (int i = 0; i < n; i++)
     {
         if (weight[i] > u)
-        {
             break;
-        }
         else
         {
             tp = tp + profit[i];
             u = u - weight[i];
         }
     }
-    if (i < num)
+    if (i < n)
     {
         tp = tp + (u / weight[i] * profit[i]);
-        printf("Maximum profit generated: %.2f\n", tp);
+        printf("The maximum profit - %f", tp);
     }
 }
 
 int main()
 {
-    float weight[20], profit[20], capacity, ratio[10], temp;
-    int i, j;
-    int num = 5;
-    printf("Enter the number of weights: ");
+    float weight[20], profit[20], capacity;
+    int num, i, j;
+    float ratio[20], temp;
+    printf("\nEnter the no. of objects:- ");
+    scanf("%d", &num);
+    printf("\nEnter the wts and profits of each object:-\n ");
     for (i = 0; i < num; i++)
     {
         scanf("%f %f", &weight[i], &profit[i]);
     }
-    printf("Enter capacity of knapsack: ");
+    printf("\nEnter the capacity of knapsack:- ");
     scanf("%f", &capacity);
-    for (i = 0; i < num; i++)
+
+    for (int i = 0; i < num; i++)
     {
         ratio[i] = profit[i] / weight[i];
     }
-    for (i = 0; i < num; i++)
+
+    for (int i = 0; i < num; i++)
     {
-        for (j = i + 1; j < num; j++)
+        for (int j = i + 1; j < num; j++)
         {
             if (ratio[i] < ratio[j])
             {
-                temp = ratio[j];
+                temp = ratio[i];
                 ratio[j] = ratio[i];
                 ratio[i] = temp;
 
@@ -60,6 +61,7 @@ int main()
             }
         }
     }
-    knapack(num, weight, profit, ratio, capacity);
+
+    knapsack(num, weight, profit, capacity);
     return 0;
 }
