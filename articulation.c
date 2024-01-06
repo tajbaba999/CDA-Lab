@@ -4,7 +4,7 @@ int dfn[10], a[10][10], l[10], n, num = 1, children[10];
 
 int min(int a, int b)
 {
-    return (a > b ? b : a);
+    return (a < b ? a : b); // Corrected the condition
 }
 
 void art(int u, int v)
@@ -24,6 +24,10 @@ void art(int u, int v)
                 children[u]++;
                 art(w, u);
                 l[u] = min(l[u], l[w]);
+                if (l[w] >= dfn[u])
+                {
+                    printf("%d is an articulation point\n", u);
+                }
             }
             else if (w != v)
             {
@@ -35,9 +39,10 @@ void art(int u, int v)
 
 int main()
 {
-    printf("Enter the vertices: ");
+    printf("Enter the number of vertices: ");
     scanf("%d", &n);
     int s, artp[10];
+
     printf("Enter the root vertex: ");
     scanf("%d", &s);
 
@@ -66,6 +71,7 @@ int main()
         }
     }
 
+    printf("Articulation points after DFS:\n");
     for (int i = 0; i < n; i++)
     {
         if (artp[i] != 0)
